@@ -1,5 +1,20 @@
 function ipsBetween(start, end) {
-  return start + " " + end;
+  const startAddress = start.split(".");
+  const endAddress = end.split(".");
+  let diffArray = [];
+
+  for (let i = 0; i < 4; i++) {
+    diffArray.push(endAddress[i] - startAddress[i]);
+  }
+
+  for (let i = 0; i < 4; i++) {
+    if (diffArray[i] < 0) {
+      diffArray[i - 1]--;
+      diffArray[i] += 256;
+    }
+  }
+
+  console.log(diffArray);
 }
 
 console.log(ipsBetween("150.0.0.0", "150.0.0.1")); // 1
