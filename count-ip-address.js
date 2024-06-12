@@ -3,10 +3,17 @@ function ipsBetween(start, end) {
   const endAddress = end.split(".");
   let diffArray = [];
 
+  console.log(startAddress + " / " + endAddress);
+
+  // Iterates through both arrays simultaneously, subtracting the difference to push
+  // to diffArray.
   for (let i = 0; i < 4; i++) {
     diffArray.push(endAddress[i] - startAddress[i]);
   }
 
+  console.log("before...", diffArray);
+  // Adds negative numbers to 256, replacing the negative integer with positive sum.
+  // Then subtracts 1 from previous iteration in Array to adjust for this addition.
   for (let i = 0; i < 4; i++) {
     if (diffArray[i] < 0) {
       diffArray[i - 1]--;
@@ -14,7 +21,7 @@ function ipsBetween(start, end) {
     }
   }
 
-  console.log(diffArray);
+  console.log("after...", diffArray);
 }
 
 console.log(ipsBetween("150.0.0.0", "150.0.0.1")); // 1
